@@ -12,6 +12,10 @@ namespace bpt.api.Models
     {
     }
 
+    public BptContext()
+    {
+    }
+
     public DbSet<MultipleChoiceQuestion> MultipleChoiceQuestion { get; set; }
     public DbSet<Flashcard> Flashcards { get; set; }
     public DbSet<Tag> Tag { get; set; }

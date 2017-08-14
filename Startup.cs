@@ -30,7 +30,7 @@ namespace bpt.api
     {
       // Add framework services.
       services.AddMvc();
-      services.AddDbContext<BptContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BptContext")));
+      services.AddDbContext<BptContext>(options => options.UseMySql(Configuration.GetConnectionString("BptContext")));
       services.AddAutoMapper();
       services.AddCors();
     }
@@ -42,7 +42,6 @@ namespace bpt.api
       {
         app.UseDeveloperExceptionPage();
         app.UseDatabaseErrorPage();
-        app.UseBrowserLink();
       }
 
       app.UseCors(builder => builder.AllowAnyOrigin());
