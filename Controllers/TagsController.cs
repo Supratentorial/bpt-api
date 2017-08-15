@@ -24,7 +24,7 @@ namespace bpt.api.Controllersbasa
         [HttpGet]
         public IEnumerable<Tag> Get()
         {
-            var tags = this._context.Tag.ToList();
+            var tags = this._context.Tags.ToList();
             return tags;
         }
 

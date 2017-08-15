@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bptapi.Migrations
 {
-    public partial class initial : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,7 +35,7 @@ namespace bptapi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MultipleChoiceQuestion",
+                name: "MultipleChoiceQuestions",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -45,11 +45,11 @@ namespace bptapi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MultipleChoiceQuestion", x => x.Id);
+                    table.PrimaryKey("PK_MultipleChoiceQuestions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tag",
+                name: "Tags",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -58,7 +58,7 @@ namespace bptapi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tag", x => x.Id);
+                    table.PrimaryKey("PK_Tags", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,9 +98,9 @@ namespace bptapi.Migrations
                 {
                     table.PrimaryKey("PK_MultipleChoiceOption", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MultipleChoiceOption_MultipleChoiceQuestion_MultipleChoiceQuestionId",
+                        name: "FK_MultipleChoiceOption_MultipleChoiceQuestions_MultipleChoiceQuestionId",
                         column: x => x.MultipleChoiceQuestionId,
-                        principalTable: "MultipleChoiceQuestion",
+                        principalTable: "MultipleChoiceQuestions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -118,9 +118,9 @@ namespace bptapi.Migrations
                 {
                     table.PrimaryKey("PK_Reference", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reference_MultipleChoiceQuestion_MultipleChoiceQuestionId",
+                        name: "FK_Reference_MultipleChoiceQuestions_MultipleChoiceQuestionId",
                         column: x => x.MultipleChoiceQuestionId,
-                        principalTable: "MultipleChoiceQuestion",
+                        principalTable: "MultipleChoiceQuestions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -156,13 +156,13 @@ namespace bptapi.Migrations
                 name: "Reference");
 
             migrationBuilder.DropTable(
-                name: "Tag");
+                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "BulletPages");
 
             migrationBuilder.DropTable(
-                name: "MultipleChoiceQuestion");
+                name: "MultipleChoiceQuestions");
         }
     }
 }

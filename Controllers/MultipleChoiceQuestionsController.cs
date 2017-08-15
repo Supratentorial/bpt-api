@@ -24,7 +24,7 @@ namespace bpt.api.Controllers
         [HttpGet]
         public IEnumerable<MultipleChoiceQuestion> GetMultipleChoiceQuestion()
         {
-            var mcqs = this._context.MultipleChoiceQuestion
+            var mcqs = this._context.MultipleChoiceQuestions
                 .Include(mcq => mcq.Options)
                 .Include(mcq => mcq.References)
                 .ToList();
@@ -40,7 +40,7 @@ namespace bpt.api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var multipleChoiceQuestion = await _context.MultipleChoiceQuestion
+            var multipleChoiceQuestion = await _context.MultipleChoiceQuestions
                 .Include(mcq => mcq.Options)
                 .Include(mcq=> mcq.References)
                 .SingleOrDefaultAsync(mcq => mcq.Id == id);
@@ -97,7 +97,7 @@ namespace bpt.api.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.MultipleChoiceQuestion.Add(multipleChoiceQuestion);
+            _context.MultipleChoiceQuestions.Add(multipleChoiceQuestion);
             try
             {
                 await _context.SaveChangesAsync();
@@ -126,13 +126,13 @@ namespace bpt.api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var multipleChoiceQuestion = await _context.MultipleChoiceQuestion.SingleOrDefaultAsync(m => m.Id == id);
+            var multipleChoiceQuestion = await _context.MultipleChoiceQuestions.SingleOrDefaultAsync(m => m.Id == id);
             if (multipleChoiceQuestion == null)
             {
                 return NotFound();
             }
 
-            _context.MultipleChoiceQuestion.Remove(multipleChoiceQuestion);
+            _context.MultipleChoiceQuestions.Remove(multipleChoiceQuestion);
             await _context.SaveChangesAsync();
 
             return Ok(multipleChoiceQuestion);
@@ -140,7 +140,7 @@ namespace bpt.api.Controllers
 
         private bool MultipleChoiceQuestionExists(int id)
         {
-            return _context.MultipleChoiceQuestion.Any(e => e.Id == id);
+            return _context.MultipleChoiceQuestions.Any(e => e.Id == id);
         }
     }
 }

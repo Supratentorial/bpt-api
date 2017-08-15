@@ -8,13 +8,13 @@ using bpt.api.Models;
 namespace bptapi.Migrations
 {
     [DbContext(typeof(BptContext))]
-    [Migration("20170814074244_initial")]
-    partial class initial
+    [Migration("20170815142834_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.1");
+                .HasAnnotation("ProductVersion", "1.1.2");
 
             modelBuilder.Entity("bpt.api.Models.Bullet", b =>
                 {
@@ -91,7 +91,7 @@ namespace bptapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MultipleChoiceQuestion");
+                    b.ToTable("MultipleChoiceQuestions");
                 });
 
             modelBuilder.Entity("bpt.api.Models.Reference", b =>
@@ -119,7 +119,7 @@ namespace bptapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tag");
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("bpt.api.Models.Bullet", b =>

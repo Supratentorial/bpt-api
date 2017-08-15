@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql;
 using bpt.api.Models;
 using System;
 using System.IO;
@@ -30,7 +31,8 @@ namespace bpt.api
     {
       // Add framework services.
       services.AddMvc();
-      services.AddDbContext<BptContext>(options => options.UseMySql(Configuration.GetConnectionString("BptContext")));
+      var connectionString = Configuration.GetConnectionString("BptContext");
+      services.AddDbContext<BptContext>(options => options.UseMySql(connectionString));
       services.AddAutoMapper();
       services.AddCors();
     }
@@ -41,7 +43,7 @@ namespace bpt.api
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
-        app.UseDatabaseErrorPage();
+        //app.UseDatabaseErrorPage();
       }
 
       app.UseCors(builder => builder.AllowAnyOrigin());
