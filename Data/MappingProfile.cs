@@ -9,12 +9,13 @@ using bpt.api.DTOs;
 
 namespace bpt2.Data
 {
-  public class MappingProfile : Profile
-  {
-    public MappingProfile()
+    public class MappingProfile : Profile
     {
-      CreateMap<Bullet, BulletDTO>();
-      CreateMap<BulletDTO, Bullet>();
+        public MappingProfile()
+        {
+            CreateMap<Bullet, BulletDTO>();
+            CreateMap<BulletDTO, Bullet>();
+            CreateMap<BulletPage, BulletPageDTO>().ForMember(dest => dest.BulletCount, opts => opts.MapFrom(src => src.Bullets.Count));
+        }
     }
-  }
 }

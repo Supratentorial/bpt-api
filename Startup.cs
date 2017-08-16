@@ -32,7 +32,7 @@ namespace bpt.api
       // Add framework services.
       services.AddCors();
       services.AddMvc();
-      var connectionString = Configuration.GetConnectionString("BptContext");
+      var connectionString = Configuration.GetConnectionString("BptDatabase");
       services.AddDbContext<BptContext>(options => options.UseMySql(connectionString));
       services.AddAutoMapper();
     }
