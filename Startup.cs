@@ -30,11 +30,11 @@ namespace bpt.api
     public void ConfigureServices(IServiceCollection services)
     {
       // Add framework services.
+      services.AddCors();
       services.AddMvc();
       var connectionString = Configuration.GetConnectionString("BptContext");
       services.AddDbContext<BptContext>(options => options.UseMySql(connectionString));
       services.AddAutoMapper();
-      services.AddCors();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +46,7 @@ namespace bpt.api
         //app.UseDatabaseErrorPage();
       }
 
-      app.UseCors(builder => builder.AllowAnyOrigin());
+      app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
       app.Use(async (context, next) =>
       {

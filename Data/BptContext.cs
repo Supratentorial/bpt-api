@@ -12,5 +12,9 @@ namespace bpt.api.Models{
         public DbSet<Flashcard> Flashcards { get; set; }
         public DbSet<MultipleChoiceQuestion> MultipleChoiceQuestions { get; set; }
         public DbSet<Tag> Tags { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder){
+            modelBuilder.Entity<MultipleChoiceQuestion>().ToTable("MultipleChoiceQuestions");
+        }
     }
 }
